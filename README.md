@@ -1,4 +1,3 @@
-npm install
-npm install node-env-run nodemon npm-run-all express-pino-logger pino-colada --save-dev
-add empty .env file
-npm run dev
+1. npm install
+2. add empty .env file
+3. npm run dev
