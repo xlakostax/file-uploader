@@ -37,7 +37,7 @@ const modalText = {
   margin: '0 auto'
 }
 
-class Upload extends Component {
+export default class Upload extends Component {
   constructor( props ) {
     super( props );
     this.state = {
@@ -48,13 +48,8 @@ class Upload extends Component {
     this.onChangeHandler = this.onChangeHandler.bind( this );
     this.updateUploadedList = this.updateUploadedList.bind( this );
     this.componentDidMount = this.componentDidMount.bind( this );
-    // this.handleOpenModal = this.handleOpenModal.bind( this );
     this.handleCloseModal = this.handleCloseModal.bind( this );
   }
-
-  // handleOpenModal = () =>  {
-  //   this.setState({ showModal: true });
-  // }
 
   handleCloseModal = () =>  {
     this.setState({ showModal: false });
@@ -99,7 +94,6 @@ class Upload extends Component {
         console.log( `${ error }` );
         } );
     } else {
-      // alert( 'Choose at least one file' )
       this.setState({ showModal: true });
     }
     this.form.reset();
@@ -131,7 +125,7 @@ class Upload extends Component {
             onRequestClose = { this.handleCloseModal }
             className = 'Modal'
           >
-            <FontAwesomeIcon icon = { faTimes } onClick = { this.handleCloseModal }  style = {{cursor: 'pointer', margin: '10px'}}/>
+            <FontAwesomeIcon icon = { faTimes } onClick = { this.handleCloseModal }  style = { { cursor: 'pointer', margin: '10px' } }/>
             <h3 style = { modalText }>No files attached</h3>
           </Modal>
         </label>
@@ -149,5 +143,3 @@ class Upload extends Component {
    );
  }
 }
-
-export default Upload;
