@@ -104,6 +104,10 @@ export default class Upload extends Component {
     a.click();
 	}
 
+  handleCloseModal = () => {
+    this.SetState( { showModal: false } )
+  }
+
   render(  ) {
    return (
     <div style = { { margin: '10em' } }>
