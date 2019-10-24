@@ -21,8 +21,8 @@ let storage = multer.diskStorage( {
 app.get( '/upload', ( req, res ) => {
   const filesFolder = './public/uploads/';
   fs.readdir( filesFolder, ( err, files ) => {
-      if ( err ) throw err;
-      res.send( files );
+    if ( err ) throw err;
+    res.send( files );
   } );
 } );
 
@@ -30,7 +30,7 @@ const upload = multer( { storage: storage } ).array( 'file' )
 app.post( '/upload', ( req, res ) => {
   upload( req, res,  ( err ) => {
     if ( err instanceof multer.MulterError ) {
-        return res.status( 500 ).json( err )
+      return res.status( 500 ).json( err )
     } else if ( err ) return res.status( 500 ).json( err )
     return res.status( 200 ).send( req.file )
   } )

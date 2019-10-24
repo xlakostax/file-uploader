@@ -1,8 +1,21 @@
 import React, { Component }  from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faEllipsisH, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faDownload, faEllipsisH, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import bulma from 'bulma';
+import Modal from 'react-modal';
+import './Upload.css'
+
+const fileListed = {
+  display: 'inline-flex',
+  alignItems: 'center'
+}
+
+const form = {
+  position: 'relative',
+  display: 'inlineFlex',
+  alignItems: 'center'
+}
 
 const input = {
   display: 'none'
@@ -16,31 +29,38 @@ const inputStyle = {
   cursor: 'pointer'
 }
 
-const form = {
+const modalText = {
   position: 'relative',
-  display: 'inlineFlex',
-  alignItems: 'center'
-}
-
-const fileListed = {
-  display: 'inline-flex',
-  alignItems: 'center'
+  display: 'block',
+  height: '100%',
+  top: 0, right: 0, bottom: 0, left: 0,
+  margin: '0 auto'
 }
 
 class Upload extends Component {
   constructor( props ) {
     super( props );
-      this.state = {
-        selectedFile: null,
-        uploadedFile: null,
-      };
-
-     this.onChangeHandler = this.onChangeHandler.bind( this );
-     this.updateUploadedList = this.updateUploadedList.bind( this );
-     this.componentDidMount = this.componentDidMount.bind( this );
+    this.state = {
+      selectedFile: null,
+      uploadedFile: null,
+      showModal: false
+    };
+    this.onChangeHandler = this.onChangeHandler.bind( this );
+    this.updateUploadedList = this.updateUploadedList.bind( this );
+    this.componentDidMount = this.componentDidMount.bind( this );
+    // this.handleOpenModal = this.handleOpenModal.bind( this );
+    this.handleCloseModal = this.handleCloseModal.bind( this );
   }
 
-  componentDidMount() {
+  // handleOpenModal = () =>  {
+  //   this.setState({ showModal: true });
+  // }
+
+  handleCloseModal = () =>  {
+    this.setState({ showModal: false });
+  }
+
+  componentDidMount = () => {
     this.updateUploadedList();
   }
 
@@ -61,7 +81,7 @@ class Upload extends Component {
   }
 
   onClickHandler = () => {
-      if ( this.state.selectedFile ) {
+    if ( this.state.selectedFile ) {
       const uploadedFile = new FormData();
       for (let i = 0; i < this.state.selectedFile.length; i++) {
         uploadedFile.append( 'file', this.state.selectedFile[i] );
@@ -79,7 +99,8 @@ class Upload extends Component {
         console.log( `${ error }` );
         } );
     } else {
-      alert( 'Choose at least one file' )
+      // alert( 'Choose at least one file' )
+      this.setState({ showModal: true });
     }
     this.form.reset();
   }
@@ -104,6 +125,15 @@ class Upload extends Component {
         </label>
         <label style = { inputStyle }>
           <FontAwesomeIcon icon = { faUpload } onClick = { this.onClickHandler } />
+          <Modal
+            isOpen = { this.state.showModal }
+            contentLabel = 'onRequestClose'
+            onRequestClose = { this.handleCloseModal }
+            className = 'Modal'
+          >
+            <FontAwesomeIcon icon = { faTimes } onClick = { this.handleCloseModal }  style = {{cursor: 'pointer', margin: '10px'}}/>
+            <h3 style = { modalText }>No files attached</h3>
+          </Modal>
         </label>
       </form><br />
       <h1 className = 'title is-4'>Uploaded files</h1>
