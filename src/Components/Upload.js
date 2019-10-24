@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component, Fragment  }  from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faEllipsisH, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
@@ -25,7 +25,7 @@ const inputStyle = {
   border: '1px solid #ccc',
   display: 'inlineBlock',
   padding: '1px 4em',
-  marginRight: '1em',
+  margin: '1em 1em 1em 0',
   cursor: 'pointer'
 }
 
@@ -108,9 +108,9 @@ export default class Upload extends Component {
     this.SetState( { showModal: false } )
   }
 
-  render(  ) {
+  render() {
    return (
-    <div style = { { margin: '10em' } }>
+    <div style = { { margin: '10%' } }>
       <p>To upload click <FontAwesomeIcon icon={ faEllipsisH } /> , choose at least one file and click on <FontAwesomeIcon icon = { faUpload } /> to upload</p><br />
       <form ref = { uploadForm => this.form = uploadForm } style = { form }>
         <label style = { inputStyle }>
