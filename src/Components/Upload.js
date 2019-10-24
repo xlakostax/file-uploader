@@ -51,10 +51,6 @@ export default class Upload extends Component {
     this.handleCloseModal = this.handleCloseModal.bind( this );
   }
 
-  handleCloseModal = () =>  {
-    this.setState({ showModal: false });
-  }
-
   componentDidMount = () => {
     this.updateUploadedList();
   }
