@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Upload from './Components/Upload/Upload'
+import Upload from './Components/Upload'
 
 function App(){
   return (
@@ -8,7 +8,6 @@ function App(){
       <Upload />
     </div>
   );
-
 }
 
 export default App;

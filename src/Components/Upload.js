@@ -56,14 +56,16 @@ class Upload extends Component {
 
   onChangeHandler = event => {
     this.setState( {
-      selectedFile: event.target.files[0]
+      selectedFile: event.target.files
     } );
   }
 
   onClickHandler = () => {
       if ( this.state.selectedFile ) {
       const uploadedFile = new FormData();
-      uploadedFile.append( 'file', this.state.selectedFile );
+      for (let i = 0; i < this.state.selectedFile.length; i++) {
+        uploadedFile.append( 'file', this.state.selectedFile[i] );
+      }
       axios.post( '/upload', uploadedFile, {
         headers: {
           'Content-Type': 'multipart/form-uploadedFile',
@@ -97,7 +99,7 @@ class Upload extends Component {
       <p>To upload click <FontAwesomeIcon icon={ faEllipsisH } /> , choose at least one file and click on <FontAwesomeIcon icon = { faUpload } /> to upload</p><br />
       <form ref = { uploadForm => this.form = uploadForm } style = { form }>
         <label style = { inputStyle }>
-          <input type='file' name='file' onChange = { this.onChangeHandler } style = { input } />
+          <input type='file' name='file' multiple onChange = { this.onChangeHandler } style = { input } />
           <FontAwesomeIcon icon = { faEllipsisH } />
         </label>
         <label style = { inputStyle }>

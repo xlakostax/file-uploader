@@ -2,7 +2,7 @@ const express = require( 'express' );
 const multer = require( 'multer' );
 const cors = require( 'cors' );
 const fs = require( 'fs' );
-const port = 7000;
+const port = 3001;
 
 const app = express();
 
@@ -10,11 +10,11 @@ app.use( express.static( 'public' ) )
 app.use( cors() );
 
 let storage = multer.diskStorage( {
-  destination:  ( req, file, callback ) => {
-    callback( null, './public/uploads' )
+  destination:  ( req, file, cb ) => {
+    cb( null, './public/uploads' )
   },
   filename:  ( req, file, cb ) => {
-    callback( null, Date.now() + '-' + file.originalname )
+    cb( null, Date.now() + '-' + file.originalname )
   }
 } );
 
