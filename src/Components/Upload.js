@@ -105,7 +105,7 @@ export default class Upload extends Component {
 	}
 
   handleCloseModal = () => {
-    this.SetState( { showModal: false } )
+    this.setState( { showModal: false } )
   }
 
   render() {
@@ -124,6 +124,7 @@ export default class Upload extends Component {
             contentLabel = 'onRequestClose'
             onRequestClose = { this.handleCloseModal }
             className = 'Modal'
+            shouldCloseOnOverlayClick = { false }
           >
             <FontAwesomeIcon icon = { faTimes } onClick = { this.handleCloseModal }  style = { { cursor: 'pointer', margin: '10px' } }/>
             <h3 style = { modalText }>No files attached</h3>
