@@ -99,6 +99,7 @@ export default class Upload extends Component {
 		let url = window.location.href;
     console.log( url );
     let a = document.createElement( 'a' );
+    console.log( a );
     a.href = url;
     a.download = `${ title }`;
     a.click();
