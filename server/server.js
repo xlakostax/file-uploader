@@ -6,7 +6,6 @@ const port = 3001;
 
 const app = express();
 
-// app.use( express.static( __dirname ) )
 app.use( cors() );
 
 let storageCongfig = multer.diskStorage( {
