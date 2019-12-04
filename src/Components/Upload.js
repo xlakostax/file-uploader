@@ -55,6 +55,7 @@ export default class Upload extends Component {
     this.updateUploadedList();
   }
 
+
   updateUploadedList = () => {
     axios.get( '/upload', { errorHandle: false } )
     .then( res => {
@@ -110,6 +111,11 @@ export default class Upload extends Component {
   }
 
   render() {
+
+    console.log(this.state.uploadedFile);
+    console.log(typeof this.state.uploadedFile);
+
+
    return (
     <div style = { { margin: '10%' } }>
       <p>To upload click <FontAwesomeIcon icon={ faEllipsisH } /> , choose at least one file and click on <FontAwesomeIcon icon = { faUpload } /> to upload</p><br />
