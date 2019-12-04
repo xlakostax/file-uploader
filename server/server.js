@@ -27,7 +27,7 @@ let storageCongfig = multer.diskStorage( {
 } );
 
 app.get( '/upload', ( req, res ) => {
-  const filesFolder = './public/uploads/';
+  const filesFolder = './public';
   fs.readdir( filesFolder, ( err, files ) => {
     if ( err ) throw err;
     res.send( files );
