@@ -2,6 +2,9 @@ const express = require( 'express' );
 const multer = require( 'multer' );
 const cors = require( 'cors' );
 const fs = require( 'fs' );
+// const crypto = require('crypto');
+const mime = require('mime');
+
 const port = 3001;
 
 const app = express();
@@ -13,7 +16,13 @@ let storageCongfig = multer.diskStorage( {
     callback( null, './public/uploads' )
   },
   filename:  ( req, file, callback ) => {
-    callback( null, Date.now() + ' - ' + file.originalname )
+    // callback( null, Date.now() + ' - ' + file.originalname )
+    // callback( null, Date.now() )
+    // crypto.pseudoRandomBytes(16, function ( err, raw ) {
+    //   callback ( null, raw.toString( 'hex' ) + Date.now() + '.' + mime.getExtension( file.mimetype ) );
+    // });
+    callback( null, Date.now() + '.' + mime.getExtension( file.mimetype ) )
+
   }
 } );
 
