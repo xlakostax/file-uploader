@@ -42,7 +42,7 @@ export default class Upload extends Component {
     super( props );
     this.state = {
       selectedFile: null,
-      uploadedFile: null,
+      uploadedFile: [],
       showModal: false
     };
     this.onChangeHandler = this.onChangeHandler.bind( this );
