@@ -13,7 +13,7 @@ app.use( cors() );
 
 let storageCongfig = multer.diskStorage( {
   destination:  ( req, file, callback ) => {
-    callback( null, './public' )
+    callback( null, './public/uploads' )
   },
   filename:  ( req, file, callback ) => {
     // callback( null, Date.now() + ' - ' + file.originalname )
@@ -27,7 +27,7 @@ let storageCongfig = multer.diskStorage( {
 } );
 
 app.get( '/upload', ( req, res ) => {
-  const filesFolder = './public';
+  const filesFolder = './public/uploads/';
   fs.readdir( filesFolder, ( err, files ) => {
     if ( err ) throw err;
     res.send( files );
